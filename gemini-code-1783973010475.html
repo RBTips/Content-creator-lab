@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StandardOnly7 | Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #ffffff; }
+        .view-content { transition: opacity 0.3s ease; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-black">
+
+    <!-- Mobile Shell -->
+    <div class="w-[390px] h-[844px] bg-slate-950 border border-slate-800 rounded-[50px] overflow-hidden flex flex-col relative shadow-2xl">
+        
+        <!-- Header -->
+        <header class="p-6 pt-12 border-b border-slate-800">
+            <h1 id="view-title" class="text-xl font-bold tracking-tighter">STANDARD_07</h1>
+        </header>
+
+        <!-- Main Viewport -->
+        <main id="app-view" class="flex-1 p-6 overflow-y-auto">
+            <!-- Content Injected Here by Router -->
+        </main>
+
+        <!-- Navigation System -->
+        <nav class="p-4 border-t border-slate-800 bg-slate-900/50 flex justify-around">
+            <button onclick="router('home')" class="text-sm font-semibold text-slate-400 hover:text-white">NODE</button>
+            <button onclick="router('assets')" class="text-sm font-semibold text-slate-400 hover:text-white">ASSETS</button>
+            <button onclick="router('config')" class="text-sm font-semibold text-slate-400 hover:text-white">CONFIG</button>
+        </nav>
+    </div>
+
+    <script>
+        // The Ecosystem Registry (Data)
+        const routes = {
+            'home': { title: 'DASHBOARD', content: '<div class="bg-slate-900 p-6 rounded-2xl border border-slate-800"><h2>Active System Status: Online</h2><p class="text-sm text-slate-400 mt-2">The Architect is Awake.</p></div>' },
+            'assets': { title: 'IP LIBRARY', content: '<div class="grid grid-cols-2 gap-4"><div class="h-32 bg-slate-800 rounded-xl"></div><div class="h-32 bg-slate-800 rounded-xl"></div></div>' },
+            'config': { title: 'SYSTEM_SETTINGS', content: '<div class="space-y-4"><div class="h-12 w-full bg-slate-900 rounded-lg"></div><div class="h-12 w-full bg-slate-900 rounded-lg"></div></div>' }
+        };
+
+        // The Router (System Engine)
+        function router(page) {
+            const view = document.getElementById('app-view');
+            const title = document.getElementById('view-title');
+            view.style.opacity = 0;
+            setTimeout(() => {
+                view.innerHTML = routes[page].content;
+                title.innerText = routes[page].title;
+                view.style.opacity = 1;
+            }, 300);
+        }
+        
+        // Boot System
+        router('home');
+    </script>
+</body>
+</html>
